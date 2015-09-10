@@ -36,7 +36,7 @@ def scrape_person(url)
     id: url.to_s[/idrpr=(\d+)/, 1],
     name: box.css('.contentheading').text.tidy,
     party: box.xpath('.//td[contains(.,"Partido o Movimiento")]/following-sibling::td').text.tidy,
-    area: box.xpath('.//td[contains(.,"Circunscripción")]/following-sibling::td').text.tidy,
+    area: box.xpath('.//td[contains(.,"Circunscripción territorial")]/following-sibling::td').text.tidy,
     image: rhs.css('.redes_sociales img/@src').first.text,
     email: rhs.css('a[href*="mailto:"]/@href').text.sub('mailto:',''),
     tel: rhs.xpath('.//td[contains(.,"Teléfono")]/following-sibling::td').text.tidy,
