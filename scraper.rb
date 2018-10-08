@@ -44,4 +44,5 @@ def scrape_person(url)
   ScraperWiki.save_sqlite([:id, :term], data)
 end
 
+ScraperWiki.sqliteexecute('DROP TABLE data') rescue nil
 scrape_list('http://www.camara.gov.co/portal2011/representantes/honorables-representantes?option=com_representantes&view=representantes&limit=0')
