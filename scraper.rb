@@ -5,6 +5,7 @@ require 'scraperwiki'
 require 'nokogiri'
 require 'colorize'
 require 'pry'
+
 require 'open-uri/cached'
 OpenURI::Cache.cache_path = '.cache'
 
@@ -46,6 +47,7 @@ def scrape_person(url)
     source: url.to_s,
   }
   data[:image] = URI.join(url, URI.encode(URI.decode(data[:image]))).to_s unless data[:image].to_s.empty?
+  puts data.reject { |_, v| v.to_s.empty? }.sort_by { |k, _| k }.to_h if ENV['MORPH_DEBUG']
   ScraperWiki.save_sqlite([:id, :term], data)
 end
 
